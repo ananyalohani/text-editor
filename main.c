@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
         scanf("%c", &ch);
         if (ch != '1' && ch != '2')
         {
-            if(ch != '\n')
+            if (ch != '\n')
             {
                 fprintf(stderr, "%sInvalid choice. Try again.%s\n", RED, WHITE);
             }
@@ -58,6 +58,11 @@ int main(int argc, char *argv[])
 void edit_file(char *filename)
 {
     FILE *fptr = fopen(filename, "a+");
+    if (fptr == NULL)
+    {
+        fprintf("%sFile could not be opened.\n", RED);
+        exit(EXIT_FAILURE);
+    }
     int fd = fileno(fptr);
     int res = flock(fd, LOCK_EX | LOCK_NB);
     if (res == -1)
@@ -75,7 +80,7 @@ void edit_file(char *filename)
     fprintf(stdout, "%sContents of the file:\n%s", BLUE, WHITE);
     print_file_content(fptr);
 
-    fprintf(stdout, "%s\nEnter text to append to file, below this line and press ctrl+D to save:%s\n", BLUE, WHITE);
+    fprintf(stdout, "%s\nEnter text to append to file, below this line and press Ctrl+D to save:%s\n", BLUE, WHITE);
 
     char buffer[MAX_SIZE];
     while (fgets(buffer, MAX_SIZE, stdin))
@@ -83,10 +88,13 @@ void edit_file(char *filename)
         fseek(fptr, 0, SEEK_END);
         fputs(buffer, fptr);
     }
+
     sleep(1);
 
     fprintf(stdout, "%sText written to file successfully.%s\n", GREEN, WHITE);
     fclose(fptr);
+
+    return;
 }
 
 void print_file_content(FILE *fptr)
@@ -96,4 +104,6 @@ void print_file_content(FILE *fptr)
     {
         fputs(buffer, stdout);
     }
+
+    return;
 }

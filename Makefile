@@ -1,3 +1,6 @@
+# Name: Ananya Lohani
+# Roll Number: 2019018
+
 compile:
 	gcc -w main.c -o main
 	chmod +x script.sh
