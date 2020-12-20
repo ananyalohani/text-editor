@@ -1,5 +1,6 @@
 compile:
-	gcc main.c -o main
+	gcc -w main.c -o main
+	chmod +x script.sh
 
 clean:
 	rm -f main
