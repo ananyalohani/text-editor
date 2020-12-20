@@ -1,5 +1,4 @@
 1
 writing 
-to
-file using
-shell script
+to file 
+using shell script

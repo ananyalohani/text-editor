@@ -3,4 +3,4 @@ compile:
 	chmod +x script.sh
 
 clean:
-	rm -f main
+	rm -f main test_file.txt

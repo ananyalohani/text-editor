@@ -1,3 +1,6 @@
+// Name: Ananya Lohani
+// Roll Number: 2019018
+
 #include <sys/file.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -75,18 +78,12 @@ void edit_file(char *filename)
     fprintf(stdout, "%s\nEnter text to append to file, below this line and press ctrl+D to save:%s\n", BLUE, WHITE);
 
     char buffer[MAX_SIZE];
-    char newbuf[MAX_SIZE];
     while (fgets(buffer, MAX_SIZE, stdin))
     {
         fseek(fptr, 0, SEEK_END);
         fputs(buffer, fptr);
-        // strcat(newbuf, buffer);
     }
     sleep(1);
-
-    // int len = strlen(newbuf);
-    // if (newbuf[len - 1] == '\n') newbuf[len - 1] = '\0';
-
 
     fprintf(stdout, "%sText written to file successfully.%s\n", GREEN, WHITE);
     fclose(fptr);
