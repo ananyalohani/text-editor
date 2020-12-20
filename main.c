@@ -89,8 +89,6 @@ void edit_file(char *filename)
         fputs(buffer, fptr);
     }
 
-    sleep(1);
-
     fprintf(stdout, "%sText written to file successfully.%s\n", GREEN, WHITE);
     fclose(fptr);
 
