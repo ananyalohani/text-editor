@@ -1,5 +1,5 @@
 compile:
-	gcc text_editor.c -o text_editor
+	gcc main.c -o main
 
 clean:
-	rm -f text_editor
+	rm -f main
