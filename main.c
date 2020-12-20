@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
+#include <unistd.h>
 
 #define WHITE       "\033[0m"
 #define BLUE        "\033[34;1m"
@@ -77,14 +78,15 @@ void edit_file(char *filename)
     char newbuf[MAX_SIZE];
     while (fgets(buffer, MAX_SIZE, stdin))
     {
-        strcat(newbuf, buffer);
+        fseek(fptr, 0, SEEK_END);
+        fputs(buffer, fptr);
+        // strcat(newbuf, buffer);
     }
+    sleep(1);
 
-    int len = strlen(newbuf);
-    if (newbuf[len - 1] == '\n') newbuf[len - 1] = '\0';
+    // int len = strlen(newbuf);
+    // if (newbuf[len - 1] == '\n') newbuf[len - 1] = '\0';
 
-    fseek(fptr, 0, SEEK_END);
-    fputs(newbuf, fptr);
 
     fprintf(stdout, "%sText written to file successfully.%s\n", GREEN, WHITE);
     fclose(fptr);
